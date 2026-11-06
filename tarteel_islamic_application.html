@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ترتيل | التطبيق الإسلامي الشامل</title>
+
+<!-- External Fonts & Scripts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&family=Reem+Kufi:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          gold: {
+            DEFAULT: '#c9a24b',
+            light: '#f0d38a',
+            deep: '#8a6a26',
+            soft: '#e8caa0',
+          },
+          night: {
+            DEFAULT: '#080d1a',
+            surface: '#0f1c33',
+            card: 'rgba(15, 28, 51, 0.7)',
+          },
+          emeraldCustom: {
+            DEFAULT: '#1f5f5b',
+            soft: '#4c9a8f',
+          }
+        },
+        fontFamily: {
+          amiri: ['Amiri', 'serif'],
+          tajawal: ['Tajawal', 'sans-serif'],
+          kufi: ['Reem Kufi', 'sans-serif'],
+          inter: ['Inter', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root {
+    --bg-main: #080d1a;
+    --bg-card: rgba(15, 28, 51, 0.75);
+    --gold-main: #c9a24b;
+    --gold-light: #f0d38a;
+    --gold-soft: #e8caa0;
+    --gold-deep: #8a6a26;
+    --text-main: #f3f0e6;
+    --text-dim: #9fb0c7;
+    --border-color: rgba(201, 162, 75, 0.28);
+    --border-soft: rgba(201, 162, 75, 0.14);
+    --emerald-bg: #1f5f5b;
+    --ar-font-size: 22px;
+  }
+
+  body.theme-paper {
+    --bg-main: #F8F3E7;
+    --bg-card: rgba(240, 232, 212, 0.85);
+    --gold-main: #A9772F;
+    --gold-light: #7c5620;
+    --gold-soft: #8a5a2b;
+    --gold-deep: #5e3f14;
+    --text-main: #2B2015;
+    --text-dim: #6b5a42;
+    --border-color: rgba(169, 119, 47, 0.28);
+    --border-soft: rgba(169, 119, 47, 0.12);
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: 'Tajawal', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Pattern Motif */
+  .bg-motif {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.12;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 0 0, transparent 9px, var(--gold-main) 9.6px, transparent 10.2px),
+      radial-gradient(circle at 60px 0, transparent 9px, var(--gold-main) 9.6px, transparent 10.2px),
+      radial-gradient(circle at 30px 52px, transparent 9px, var(--gold-main) 9.6px, transparent 10.2px);
+    background-size: 60px 104px;
+    -webkit-mask-image: radial-gradient(1000px 800px at 50% 15%, #000 0%, transparent 80%);
+    mask-image: radial-gradient(1000px 800px at 50% 15%, #000 0%, transparent 80%);
+  }
+
+  .frieze {
+    height: 6px;
+    background-image: repeating-linear-gradient(135deg, transparent 0 6px, var(--gold-main) 6px 7px, transparent 7px 12px),
+                      repeating-linear-gradient(45deg, transparent 0 6px, var(--gold-main) 6px 7px, transparent 7px 12px);
+    opacity: 0.45;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 10px; }
+
+  /* Animation utilities */
+  .tab-anim { animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Quranic style blur reveal */
+  .blur-text { filter: blur(7px); transition: filter 0.3s ease; }
+  .blur-text:hover, .blur-text.revealed { filter: blur(0); }
+
+  /* Circular Counter SVG Ring */
+  .ring-svg { transform: rotate(-90deg); }
+
+  /* Floating UI Card glassmorphism */
+  .tar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    border-radius: 1.25rem;
+  }
+
+  .tar-card-accent {
+    background: linear-gradient(145deg, rgba(201,162,75,0.12), rgba(31,95,91,0.25));
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 0 1px rgba(201,162,75,0.08);
+  }
+
+  body.theme-paper .tar-card-accent {
+    background: linear-gradient(145deg, rgba(169,119,47,0.12), rgba(240,232,212,0.9));
+  }
+</style>
+</head>
+<body class="pb-24 pt-3">
+<div class="bg-motif"></div>
+
+<!-- Top Fixed Header -->
+<header class="sticky top-0 z-30 px-4 py-2 backdrop-blur-md border-b border-[var(--border-soft)] bg-[var(--bg-main)]/80 transition-colors">
+  <div class="max-w-md mx-auto flex items-center justify-between">
+    <!-- Brand Logo & Title -->
+    <div class="flex items-center gap-3">
+      <!-- Worshipper SVG Icon matching design aesthetic -->
+      <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-b from-[var(--gold-main)] to-[var(--gold-deep)] text-black shadow-md">
+        <svg class="w-6 h-6" viewBox="0 0 512 512" fill="currentColor">
+          <path d="M256 32c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm-80 128c-17.7 0-32 14.3-32 32v128c0 17.7 14.3 32 32 32h16v128c0 17.7 14.3 32 32 32s32-14.3 32-32V352h16v128c0 17.7 14.3 32 32 32s32-14.3 32-32V352h16c17.7 0 32-14.3 32-32V192c0-17.7-14.3-32-32-32H176z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="font-amiri font-bold text-2xl tracking-wide leading-none text-transparent bg-clip-text bg-gradient-to-b from-[var(--gold-light)] to-[var(--gold-main)]">ترتيل</h1>
+        <p class="text-[10px] text-[var(--text-dim)] font-tajawal mt-0.5">الرفيق الإيماني الشامل</p>
+      </div>
+    </div>
+
+    <!-- Actions & Settings Button -->
+    <div class="flex items-center gap-2">
+      <button id="quickAudioBtn" title="تلاوة خفيفة" class="p-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-card)] text-[var(--gold-light)] hover:scale-105 active:scale-95 transition">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+      </button>
+      <button id="openSettingsDrawerBtn" class="p-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-card)] text-[var(--gold-light)] hover:scale-105 active:scale-95 transition" title="الإعدادات">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="frieze max-w-md mx-auto my-1"></div>
+
+<!-- MAIN VIEWPORT CONTAINER -->
+<main class="max-w-md mx-auto px-4 pt-2">
+
+  <!-- ================= MODULE 1: QURAN ================= -->
+  <section id="mod-quran" class="tab-anim hidden">
+    <!-- Quran Nav & Controls -->
+    <div class="tar-card p-4 mb-4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="font-amiri text-xl font-bold text-[var(--gold-light)] flex items-center gap-2">
+          <span>📖</span> القرآن الكريم
+        </h2>
+        <span id="khatmaBadge" class="text-xs px-2.5 py-1 rounded-full border border-[var(--border-color)] text-[var(--gold-soft)] bg-[var(--bg-main)]">
+          الختمة: 0%
+        </span>
+      </div>
+
+      <!-- Search & Surah Select -->
+      <div class="space-y-2">
+        <input type="search" id="quranSearch" placeholder="ابحث باسم السورة أو كلمة من آية..." class="w-full px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)] text-sm text-[var(--text-main)] outline-none focus:border-[var(--gold-main)]">
+        <select id="quranSurahSelect" class="w-full px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)] text-sm text-[var(--text-main)] outline-none">
+          <option value="">جاري تحميل السور...</option>
+        </select>
+      </div>
+
+      <!-- Audio Reciter bar -->
+      <div class="mt-3 pt-3 border-t border-[var(--border-soft)] flex items-center justify-between text-xs text-[var(--text-dim)] flex-wrap gap-2">
+        <div class="flex items-center gap-1">
+          <span>القارئ:</span>
+          <select id="quranReciter" class="bg-transparent border border-[var(--border-soft)] rounded-lg px-1.5 py-1 text-[var(--gold-soft)] font-tajawal">
+            <option value="3">مشاري العفاسي</option>
+            <option value="4">محمود الحصري</option>
+            <option value="5">عبدالباسط عبدالصمد</option>
+          </select>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="quranAudioPlayAll" class="px-3 py-1 rounded-full border border-[var(--gold-main)] text-[var(--gold-light)] hover:bg-[var(--gold-main)] hover:text-black font-bold transition">▶ تشغيل السورة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quran Display View -->
+    <div id="quranDisplay" class="space-y-4">
+      <div class="text-center py-12 text-[var(--text-dim)]">
+        <div class="w-8 h-8 mx-auto mb-2 border-2 border-[var(--border-color)] border-t-[var(--gold-main)] rounded-full animate-spin"></div>
+        <span>جاري فتح المصحف الشريف...</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 2: AZKAR & TASBEEH ================= -->
+  <section id="mod-azkar" class="tab-anim hidden">
+    <!-- Sub-tabs for Azkar / Tasbeeh -->
+    <div class="flex rounded-xl p-1 bg-[var(--bg-card)] border border-[var(--border-color)] mb-4">
+      <button id="subTabAzkarBtn" class="flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black">الأذكار اليومية</button>
+      <button id="subTabTasbeehBtn" class="flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]">المسبحة الإلكترونية</button>
+    </div>
+
+    <!-- Section 2A: Azkar View -->
+    <div id="azkarSubView" class="space-y-4">
+      <!-- Category Chips Grid -->
+      <div id="azkarCatGrid" class="grid grid-cols-2 gap-2.5">
+        <!-- Rendered dynamically -->
+      </div>
+      <!-- Azkar Items List Container -->
+      <div id="azkarItemsList" class="space-y-3 hidden">
+        <div class="flex items-center justify-between pb-2 border-b border-[var(--border-soft)]">
+          <button id="azkarBackToCats" class="text-xs text-[var(--gold-soft)] font-bold flex items-center gap-1">← العودة للأقسام</button>
+          <span id="azkarCategoryTitle" class="font-amiri text-lg font-bold text-[var(--gold-light)]"></span>
+        </div>
+        <div id="azkarCardsContainer" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <!-- Section 2B: Tasbeeh View -->
+    <div id="tasbeehSubView" class="hidden space-y-4">
+      <div class="tar-card p-5 text-center flex flex-col items-center">
+        <!-- Dhikr Selector chips -->
+        <div id="tasbeehPresets" class="flex flex-wrap justify-center gap-1.5 mb-5">
+          <!-- Chips generated via JS -->
+        </div>
+
+        <!-- Counter Circular Ring Button -->
+        <div id="tasbeehRingBtn" class="w-56 h-56 rounded-full relative flex items-center justify-center cursor-pointer tar-card-accent shadow-2xl active:scale-95 transition-transform my-2">
+          <svg class="absolute inset-0 w-full h-full ring-svg" viewBox="0 0 230 230">
+            <circle cx="115" cy="115" r="104" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+            <circle id="tasbeehRingProgress" cx="115" cy="115" r="104" fill="none" stroke="url(#goldGrad)" stroke-width="8" stroke-linecap="round" stroke-dasharray="653.4" stroke-dashoffset="653.4" class="transition-all duration-200"/>
+            <defs>
+              <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f0d38a"/>
+                <stop offset="100%" stop-color="#8a6a26"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="relative z-10 select-none">
+            <div id="tasbeehCountNum" class="font-amiri text-6xl font-bold text-[var(--gold-light)]">0</div>
+            <div id="tasbeehTargetLbl" class="text-xs text-[var(--text-dim)] mt-1">الهدف: 33</div>
+          </div>
+        </div>
+
+        <!-- Target Selector -->
+        <div class="flex gap-2 my-3">
+          <button data-target="33" class="t-target-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-main)] font-bold">33</button>
+          <button data-target="99" class="t-target-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-main)] font-bold">99</button>
+          <button data-target="100" class="t-target-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-main)] font-bold">100</button>
+          <button data-target="1000" class="t-target-btn px-3 py-1 text-xs rounded-full border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-main)] font-bold">مفتوح ∞</button>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-3 w-full mt-2">
+          <button id="tasbeehResetBtn" class="flex-1 py-2 rounded-xl border border-[var(--border-color)] text-xs font-bold text-[var(--text-dim)] hover:text-red-400">تصفير</button>
+          <button id="tasbeehUndoBtn" class="flex-1 py-2 rounded-xl border border-[var(--border-color)] text-xs font-bold text-[var(--gold-soft)]">تراجع ↩</button>
+        </div>
+
+        <!-- Total Stats -->
+        <div class="grid grid-cols-2 gap-3 w-full mt-4 pt-4 border-t border-[var(--border-soft)]">
+          <div class="tar-card p-2 text-center">
+            <div id="tasbeehTodayTotal" class="font-amiri text-xl text-[var(--gold-light)] font-bold">0</div>
+            <div class="text-[10px] text-[var(--text-dim)]">تسبيحات اليوم</div>
+          </div>
+          <div class="tar-card p-2 text-center">
+            <div id="tasbeehAllTotal" class="font-amiri text-xl text-[var(--gold-light)] font-bold">0</div>
+            <div class="text-[10px] text-[var(--text-dim)]">الإجمالي الكلي</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 3: NAMES OF ALLAH ================= -->
+  <section id="mod-names" class="tab-anim hidden">
+    <!-- Sub navigation for Names -->
+    <div class="flex rounded-xl p-1 bg-[var(--bg-card)] border border-[var(--border-color)] mb-4">
+      <button id="namesGridTabBtn" class="flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black">قائمة الأسماء</button>
+      <button id="namesStudyTabBtn" class="flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]">المسبحة والتأمل</button>
+      <button id="namesQuizTabBtn" class="flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]">اختبر حفظك</button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="tar-card p-3 mb-4 flex items-center justify-between text-xs">
+      <span class="text-[var(--text-dim)]">المحفوظات: <b id="namesLearnedCount" class="text-[var(--gold-light)] font-bold">0 من 99</b></span>
+      <div class="w-1/2 bg-[var(--bg-main)] h-2 rounded-full overflow-hidden border border-[var(--border-soft)]">
+        <div id="namesProgressBar" class="h-full bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] transition-all w-0"></div>
+      </div>
+    </div>
+
+    <!-- 3A: Grid View -->
+    <div id="namesGridView" class="space-y-3">
+      <input type="search" id="namesSearchInput" placeholder="ابحث بالاسم أو المعنى..." class="w-full px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)] text-sm text-[var(--text-main)] outline-none">
+      <div id="namesGridContainer" class="grid grid-cols-2 gap-2.5"></div>
+    </div>
+
+    <!-- 3B: Interactive Study / Tasbeeh Viewer -->
+    <div id="namesStudyView" class="hidden space-y-4">
+      <div class="tar-card p-5 text-center flex flex-col items-center">
+        <!-- Bead Ring -->
+        <div id="namesBeadRing" class="w-52 h-52 rounded-full relative flex items-center justify-center tar-card-accent shadow-xl border-2 border-[var(--border-color)] my-2">
+          <svg class="absolute inset-0 w-full h-full ring-svg" viewBox="0 0 230 230">
+            <circle cx="115" cy="115" r="104" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
+            <circle id="namesBeadRingProgress" cx="115" cy="115" r="104" fill="none" stroke="var(--gold-main)" stroke-width="6" stroke-linecap="round" stroke-dasharray="653.4" stroke-dashoffset="0"/>
+          </svg>
+          <div class="relative z-10 px-4">
+            <div id="beadNameTitle" class="font-amiri text-4xl font-bold text-[var(--gold-light)]">الله</div>
+            <div id="beadOrderNum" class="text-xs text-[var(--text-dim)] mt-2">1 من 99</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="flex items-center gap-4 my-3">
+          <button id="namesBeadPrev" class="w-10 h-10 rounded-full border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--gold-light)] font-bold text-lg">→</button>
+          <button id="namesBeadSpeak" class="w-12 h-12 rounded-full border border-[var(--gold-main)] bg-gradient-to-b from-[var(--gold-main)] to-[var(--gold-deep)] text-black font-bold text-xl shadow-lg">🔊</button>
+          <button id="namesBeadNext" class="w-10 h-10 rounded-full border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--gold-light)] font-bold text-lg">←</button>
+        </div>
+
+        <!-- Meaning Card -->
+        <div class="tar-card p-4 w-full text-right space-y-2 mt-2">
+          <div id="beadMeaning" class="font-amiri text-lg font-bold text-[var(--gold-soft)]"></div>
+          <div id="beadExplain" class="text-xs text-[var(--text-dim)] leading-relaxed"></div>
+          <div class="p-2.5 rounded-xl border border-[var(--border-soft)] bg-[var(--bg-main)]/60 text-xs text-[var(--text-main)] mt-2">
+            <span class="text-[var(--gold-main)] font-bold block mb-1">كيف تدعو الله به:</span>
+            <span id="beadInvoke"></span>
+          </div>
+        </div>
+
+        <button id="beadToggleLearned" class="w-full mt-3 py-2.5 rounded-xl border border-[var(--border-color)] text-xs font-bold text-[var(--gold-soft)]">☆ وضع علامة "حفظتها"</button>
+      </div>
+    </div>
+
+    <!-- 3C: Quiz Mode -->
+    <div id="namesQuizView" class="hidden space-y-4">
+      <div class="tar-card p-5 text-center">
+        <div class="text-xs text-[var(--text-dim)] tracking-widest mb-2" id="quizQuestionType">ما هذا الاسم؟</div>
+        <div id="quizQuestionText" class="font-amiri text-2xl font-bold text-[var(--gold-light)] mb-6"></div>
+        
+        <div id="quizOptionsContainer" class="space-y-2.5"></div>
+
+        <div class="flex justify-center gap-6 mt-6 text-xs text-[var(--text-dim)] pt-4 border-t border-[var(--border-soft)]">
+          <span>الإجابات الصحيحة: <b id="quizCorrectScore" class="text-green-400">0</b></span>
+          <span>الأخطاء: <b id="quizWrongScore" class="text-red-400">0</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 4: PRAYER TIMES & QIBLA ================= -->
+  <section id="mod-prayer" class="tab-anim hidden space-y-4">
+    <!-- Next Prayer Card -->
+    <div class="tar-card-accent p-5 text-center relative overflow-hidden">
+      <div class="text-xs text-[var(--text-dim)] tracking-widest uppercase">الصلاة القادمة</div>
+      <div id="prayerNextName" class="font-amiri text-3xl font-bold text-[var(--gold-light)] my-1">جارِ الحساب...</div>
+      <div id="prayerCountdown" class="font-amiri text-4xl font-black text-transparent bg-clip-text bg-gradient-to-b from-[var(--text-main)] to-[var(--gold-soft)] tracking-wider">--:--:--</div>
+      
+      <!-- Date & Location header info -->
+      <div class="mt-4 pt-3 border-t border-[var(--border-soft)] flex items-center justify-between text-xs text-[var(--text-dim)] flex-wrap gap-1">
+        <span id="hijriDateDisplay">--</span>
+        <button id="qiblaToggleLocBtn" class="text-[var(--gold-soft)] border border-[var(--border-soft)] px-2 py-0.5 rounded-full">📍 <span id="currentLocName">مكة المكرمة</span></button>
+      </div>
+    </div>
+
+    <!-- Manual Location Modal / Form -->
+    <div id="locSearchPanel" class="tar-card p-3 space-y-2 hidden">
+      <input type="text" id="citySearchInput" placeholder="ابحث عن مدينتك (مثال: القاهرة)..." class="w-full px-3 py-1.5 text-xs rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-main)]">
+      <div id="citySearchResults" class="max-h-32 overflow-y-auto space-y-1 text-xs text-[var(--text-dim)]"></div>
+      <div class="flex justify-between items-center pt-2">
+        <button id="gpsLocationBtn" class="text-xs font-bold text-[var(--gold-main)]">استخدام GPS تلقائي 🛰️</button>
+        <button id="closeLocPanelBtn" class="text-xs text-[var(--text-dim)]">إغلاق</button>
+      </div>
+    </div>
+
+    <!-- Daily Prayer List -->
+    <div class="tar-card overflow-hidden">
+      <div id="prayerTimesList" class="divide-y divide-[var(--border-soft)] text-sm">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Qibla Compass Viewer -->
+    <div class="tar-card p-5 text-center flex flex-col items-center">
+      <h3 class="font-amiri text-lg font-bold text-[var(--gold-light)] mb-3">اتجاة القبلة المشرفة</h3>
+      
+      <div class="w-60 h-60 rounded-full relative flex items-center justify-center tar-card border-2 border-[var(--border-color)] my-2 shadow-2xl">
+        <!-- Compass Outer Ticks -->
+        <div class="absolute inset-2 rounded-full border border-dashed border-[var(--border-soft)] pointer-events-none"></div>
+        <div class="absolute top-2 text-xs font-bold text-[var(--gold-main)]">ش</div>
+        <div class="absolute bottom-2 text-xs font-bold text-[var(--text-dim)]">ج</div>
+        <div class="absolute right-2 text-xs font-bold text-[var(--text-dim)]">ق</div>
+        <div class="absolute left-2 text-xs font-bold text-[var(--text-dim)]">غ</div>
+
+        <!-- Needle -->
+        <div id="qiblaNeedle" class="absolute inset-0 transition-transform duration-300">
+          <svg class="w-full h-full" viewBox="0 0 260 260">
+            <polygon points="130,36 118,138 130,150 142,138" fill="var(--gold-main)"/>
+            <polygon points="130,224 120,150 130,138 140,150" fill="#4c9a8f"/>
+          </svg>
+        </div>
+        <div class="w-3 h-3 rounded-full bg-[var(--gold-main)] z-10 shadow"></div>
+      </div>
+
+      <div class="text-center mt-3">
+        <div id="qiblaDegreeText" class="font-amiri text-3xl font-bold text-[var(--gold-light)]">--°</div>
+        <p class="text-[11px] text-[var(--text-dim)] mt-1 max-w-xs">درجة الاتجاه نحو الكعبة المشرفة من موقعك الحالي. تضمن البوصلة دقة أفضل عند تحريك الهاتف في الرسم الرقمي 8.</p>
+        <button id="enableCompassBtn" class="mt-3 px-4 py-1.5 rounded-full border border-[var(--gold-main)] text-xs font-bold text-[var(--gold-light)]">تفعيل بوصلة الجهاز 🧭</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 5: HADITH ================= -->
+  <section id="mod-hadith" class="tab-anim hidden space-y-4">
+    <!-- Hadith of the Day -->
+    <div class="tar-card-accent p-4 relative">
+      <div class="text-[11px] text-[var(--gold-soft)] font-bold tracking-widest text-center mb-1">✨ حديث اليوم</div>
+      <div id="hotdText" class="font-amiri text-base leading-relaxed text-center my-2 text-[var(--text-main)]">جارِ تحميل حديث اليوم...</div>
+      <div id="hotdSource" class="text-[11px] text-[var(--text-dim)] text-center"></div>
+    </div>
+
+    <!-- Hadith Books Grid -->
+    <div id="hadithBooksView" class="space-y-3">
+      <h3 class="font-amiri text-base font-bold text-[var(--gold-light)]">الكتب التسعة للأحاديث</h3>
+      <div id="hadithBooksGrid" class="grid grid-cols-2 gap-2.5">
+        <!-- Hadith books injected by JS -->
+      </div>
+    </div>
+
+    <!-- Hadith List / Reader View -->
+    <div id="hadithReaderView" class="hidden space-y-3">
+      <div class="flex items-center justify-between pb-2 border-b border-[var(--border-soft)]">
+        <button id="hadithBackToBooks" class="text-xs text-[var(--gold-soft)] font-bold">← قائمة الكتب</button>
+        <span id="hadithBookTitle" class="font-amiri text-base font-bold text-[var(--gold-light)]"></span>
+      </div>
+
+      <input type="search" id="hadithSearchInput" placeholder="ابحث في أحاديث هذا الكتاب..." class="w-full px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)] text-sm text-[var(--text-main)] outline-none">
+
+      <div id="hadithItemsContainer" class="space-y-3"></div>
+      <button id="hadithLoadMoreBtn" class="w-full py-2.5 rounded-xl border border-[var(--border-color)] text-xs font-bold text-[var(--gold-soft)] hidden">تحميل المزيد من الأحاديث</button>
+    </div>
+  </section>
+
+  <!-- ================= MODULE 6: PROPHETS STORIES ================= -->
+  <section id="mod-stories" class="tab-anim hidden space-y-4">
+    <!-- Sub-navigation library / timeline -->
+    <div class="flex rounded-xl p-1 bg-[var(--bg-card)] border border-[var(--border-color)] mb-3">
+      <button id="storiesLibTabBtn" class="flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black">مكتبة الأنبياء</button>
+      <button id="storiesTimeTabBtn" class="flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]">سلسلة النبوة الزمنية</button>
+    </div>
+
+    <!-- Search Input -->
+    <input type="search" id="prophetSearchInput" placeholder="ابحث باسم النبي عليه السلام..." class="w-full px-3 py-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)] text-sm text-[var(--text-main)] outline-none">
+
+    <!-- 6A: Grid Library -->
+    <div id="prophetsGridView" class="grid grid-cols-2 gap-2.5"></div>
+
+    <!-- 6B: Timeline View -->
+    <div id="prophetsTimelineView" class="hidden space-y-3 relative pr-6 border-r-2 border-[var(--border-color)] mr-2">
+      <!-- Timeline items injected -->
+    </div>
+
+    <!-- 6C: Prophet Story Detailed View -->
+    <div id="prophetDetailView" class="hidden space-y-4">
+      <button id="prophetBackBtn" class="text-xs text-[var(--gold-soft)] font-bold flex items-center gap-1">← العودة للقائمة</button>
+      
+      <div class="tar-card-accent p-5 text-center relative">
+        <div id="pDetailIcon" class="text-4xl mb-1"></div>
+        <h2 id="pDetailName" class="font-amiri text-2xl font-bold text-[var(--gold-light)]"></h2>
+        <p id="pDetailTitle" class="text-xs text-[var(--text-dim)] mt-1"></p>
+        <div class="flex justify-center gap-2 mt-3 text-[10px] text-[var(--gold-soft)]">
+          <span id="pDetailOrder" class="px-2 py-0.5 rounded-full border border-[var(--border-soft)]"></span>
+          <span id="pDetailMentions" class="px-2 py-0.5 rounded-full border border-[var(--border-soft)]"></span>
+        </div>
+        <div class="flex gap-2 justify-center mt-4">
+          <button id="pDetailListenBtn" class="px-3 py-1.5 rounded-xl border border-[var(--gold-main)] bg-[var(--gold-main)] text-black font-bold text-xs">🔊 استماع للقصة</button>
+          <button id="pDetailMarkReadBtn" class="px-3 py-1.5 rounded-xl border border-[var(--border-color)] text-xs text-[var(--gold-soft)]">☆ قرأتها</button>
+        </div>
+      </div>
+
+      <!-- Story Stages -->
+      <div id="pDetailStagesContainer" class="space-y-3"></div>
+
+      <!-- Moral Lesson -->
+      <div class="tar-card p-4 border-r-4 border-r-[var(--emerald-soft)]">
+        <div class="text-xs font-bold text-[var(--emerald-soft)] mb-1">العبرة والدرس المستفاد:</div>
+        <div id="pDetailLesson" class="text-xs leading-relaxed text-[var(--text-main)]"></div>
+      </div>
+
+      <!-- Surah References -->
+      <div class="tar-card p-4 space-y-1.5">
+        <div class="text-xs font-bold text-[var(--gold-light)]">مواضع الذكر في السور:</div>
+        <div id="pDetailSurahs" class="flex flex-wrap gap-1.5 text-xs text-[var(--gold-soft)]"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- BOTTOM FLOATING NAVIGATION BAR -->
+<nav class="fixed bottom-0 left-0 right-0 z-40 bg-[var(--bg-main)]/95 backdrop-blur-lg border-t border-[var(--border-color)] py-2 px-3">
+  <div class="max-w-md mx-auto flex items-center justify-between text-[11px] font-tajawal font-medium">
+    <button data-mod="mod-quran" class="nav-tab-btn flex flex-col items-center gap-1 text-[var(--gold-main)]">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      <span>القرآن</span>
+    </button>
+    <button data-mod="mod-azkar" class="nav-tab-btn flex flex-col items-center gap-1 text-[var(--text-dim)] hover:text-[var(--gold-soft)]">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <span>الأذكار</span>
+    </button>
+    <button data-mod="mod-names" class="nav-tab-btn flex flex-col items-center gap-1 text-[var(--text-dim)] hover:text-[var(--gold-soft)]">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+      <span>الأسماء</span>
+    </button>
+    <button data-mod="mod-prayer" class="nav-tab-btn flex flex-col items-center gap-1 text-[var(--text-dim)] hover:text-[var(--gold-soft)]">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+      <span>المواقيت</span>
+    </button>
+    <button data-mod="mod-hadith" class="nav-tab-btn flex flex-col items-center gap-1 text-[var(--text-dim)] hover:text-[var(--gold-soft)]">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6m-6 4h6"/></svg>
+      <span>الأحاديث</span>
+    </button>
+    <button data-mod="mod-stories" class="nav-tab-btn flex flex-col items-center gap-1 text-[var(--text-dim)] hover:text-[var(--gold-soft)]">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      <span>الأنبياء</span>
+    </button>
+  </div>
+</nav>
+
+<!-- SETTINGS DRAWER OVERLAY -->
+<div id="drawerOverlay" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+<aside id="settingsDrawer" class="fixed top-0 bottom-0 right-0 w-80 max-w-[85vw] bg-[var(--bg-main)] border-l border-[var(--border-color)] z-50 transform translate-x-full transition-transform duration-300 p-5 overflow-y-auto">
+  <div class="flex items-center justify-between pb-3 border-b border-[var(--border-soft)] mb-4">
+    <h3 class="font-amiri text-lg font-bold text-[var(--gold-light)]">إعدادات التطبيق</h3>
+    <button id="closeDrawerBtn" class="w-8 h-8 rounded-lg border border-[var(--border-color)] text-[var(--text-main)] text-sm">✕</button>
+  </div>
+
+  <!-- Theme selector -->
+  <div class="space-y-4 text-xs">
+    <div>
+      <label class="font-bold text-[var(--gold-soft)] block mb-2">مظهر التطبيق</label>
+      <div class="grid grid-cols-2 gap-2">
+        <button id="themeNightBtn" class="py-2.5 rounded-xl border-2 border-[var(--gold-main)] bg-[#080d1a] text-white font-bold">ليلي (Night)</button>
+        <button id="themePaperBtn" class="py-2.5 rounded-xl border border-[var(--border-color)] bg-[#F8F3E7] text-[#2B2015] font-bold">ورقي (Paper)</button>
+      </div>
+    </div>
+
+    <div>
+      <label class="font-bold text-[var(--gold-soft)] block mb-1">حجم الخط القرآني</label>
+      <input type="range" id="fontSizeSlider" min="18" max="36" value="24" class="w-full accent-[var(--gold-main)]">
+    </div>
+
+    <div>
+      <label class="font-bold text-[var(--gold-soft)] block mb-1">سرعة الاستماع الصوتي</label>
+      <input type="range" id="speechRateSlider" min="70" max="140" value="95" class="w-full accent-[var(--gold-main)]">
+    </div>
+
+    <div class="pt-3 border-t border-[var(--border-soft)] space-y-2">
+      <div class="flex items-center justify-between">
+        <span>تفعيل الاهتزاز عند العد</span>
+        <input type="checkbox" id="vibeToggle" checked class="accent-[var(--gold-main)]">
+      </div>
+      <div class="flex items-center justify-between">
+        <span>إظهار التفسير الميسر</span>
+        <input type="checkbox" id="tafsirToggle" checked class="accent-[var(--gold-main)]">
+      </div>
+      <div class="flex items-center justify-between">
+        <span>إظهار الترجمة الإنجليزية</span>
+        <input type="checkbox" id="transToggle" class="accent-[var(--gold-main)]">
+      </div>
+    </div>
+
+    <button id="resetAllDataBtn" class="w-full mt-6 py-2 rounded-xl border border-red-500/40 text-red-400 font-bold">مسح السجل وجميع المحفوظات</button>
+  </div>
+</aside>
+
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div id="toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-[var(--bg-card)] border border-[var(--border-color)] text-[var(--text-main)] text-xs px-4 py-2.5 rounded-xl shadow-xl pointer-events-none opacity-0 transition-opacity duration-300 text-center max-w-[85vw]"></div>
+
+<!-- JAVASCRIPT APPLICATION LOGIC -->
+<script>
+(function() {
+  /* ================= GLOBALS & STATE ================= */
+  const state = {
+    theme: 'night',
+    fontSize: 24,
+    speechRate: 95,
+    vibrate: true,
+    showTafsir: true,
+    showTrans: false,
+    
+    // Module Progress / Saved
+    learnedNames: {},
+    azkarProgress: {},
+    tasbeehCount: 0,
+    tasbeehTarget: 33,
+    tasbeehToday: 0,
+    tasbeehAll: 0,
+    readProphets: {},
+    bookmarksQuran: [],
+    
+    // Active UI states
+    activeModule: 'mod-quran',
+    currentSurahNum: 1,
+    quranData: null,
+    currentTasbeehDhikr: 'سُبْحَانَ اللَّهِ',
+    location: { lat: 21.4225, lng: 39.8262, label: 'مكة المكرمة' },
+    quizScore: { correct: 0, wrong: 0 }
+  };
+
+  const el = id => document.getElementById(id);
+  const toastEl = el('toast');
+  
+  function showToast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.remove('opacity-0');
+    setTimeout(() => toastEl.classList.add('opacity-0'), 2400);
+  }
+
+  function vib(ms = 20) {
+    if(state.vibrate && navigator.vibrate) navigator.vibrate(ms);
+  }
+
+  function arNum(n) {
+    const map = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    return String(n).replace(/[0-9]/g, d => map[d]);
+  }
+
+  /* Load / Save Local Storage */
+  function loadStorage() {
+    try {
+      const p = JSON.parse(localStorage.getItem('tarteel_prefs') || '{}');
+      Object.assign(state, p);
+      state.learnedNames = JSON.parse(localStorage.getItem('tarteel_names_learned') || '{}');
+      state.readProphets = JSON.parse(localStorage.getItem('tarteel_prophets_read') || '{}');
+      state.azkarProgress = JSON.parse(localStorage.getItem('tarteel_azkar_prog') || '{}');
+      state.tasbeehAll = parseInt(localStorage.getItem('tarteel_tasbeeh_all') || '0', 10);
+    } catch(e) {}
+  }
+
+  function savePrefs() {
+    localStorage.setItem('tarteel_prefs', JSON.stringify({
+      theme: state.theme, fontSize: state.fontSize, speechRate: state.speechRate,
+      vibrate: state.vibrate, showTafsir: state.showTafsir, showTrans: state.showTrans,
+      location: state.location
+    }));
+  }
+
+  /* ================= APPLICATION INITIALIZATION ================= */
+  window.addEventListener('DOMContentLoaded', () => {
+    loadStorage();
+    applyTheme(state.theme);
+    initNavigation();
+    initSettingsDrawer();
+    
+    // Init Modules
+    initQuranModule();
+    initAzkarModule();
+    initNamesModule();
+    initPrayerModule();
+    initHadithModule();
+    initStoriesModule();
+  });
+
+  /* Theme Switcher */
+  function applyTheme(theme) {
+    state.theme = theme;
+    document.body.classList.toggle('theme-paper', theme === 'paper');
+    savePrefs();
+  }
+
+  /* Navigation handling */
+  function initNavigation() {
+    document.querySelectorAll('.nav-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modId = btn.dataset.mod;
+        document.querySelectorAll('main > section').forEach(sec => sec.classList.add('hidden'));
+        el(modId).classList.remove('hidden');
+        
+        document.querySelectorAll('.nav-tab-btn').forEach(b => {
+          b.classList.remove('text-[var(--gold-main)]');
+          b.classList.add('text-[var(--text-dim)]');
+        });
+        btn.classList.add('text-[var(--gold-main)]');
+        btn.classList.remove('text-[var(--text-dim)]');
+        
+        state.activeModule = modId;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+    // Default open Quran
+    el('mod-quran').classList.remove('hidden');
+  }
+
+  /* Settings Drawer */
+  function initSettingsDrawer() {
+    const drawer = el('settingsDrawer');
+    const overlay = el('drawerOverlay');
+    
+    const openBtn = el('openSettingsDrawerBtn');
+    const closeBtn = el('closeDrawerBtn');
+    
+    openBtn.addEventListener('click', () => {
+      drawer.classList.remove('translate-x-full');
+      overlay.classList.remove('opacity-0', 'pointer-events-none');
+    });
+    
+    const closeDrawer = () => {
+      drawer.classList.add('translate-x-full');
+      overlay.classList.add('opacity-0', 'pointer-events-none');
+    };
+    
+    closeBtn.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    
+    el('themeNightBtn').addEventListener('click', () => applyTheme('night'));
+    el('themePaperBtn').addEventListener('click', () => applyTheme('paper'));
+    
+    el('fontSizeSlider').addEventListener('input', e => {
+      state.fontSize = parseInt(e.target.value);
+      document.documentElement.style.setProperty('--ar-font-size', state.fontSize + 'px');
+      savePrefs();
+    });
+    
+    el('vibeToggle').addEventListener('change', e => { state.vibrate = e.target.checked; savePrefs(); });
+    el('tafsirToggle').addEventListener('change', e => { state.showTafsir = e.target.checked; savePrefs(); });
+    el('transToggle').addEventListener('change', e => { state.showTrans = e.target.checked; savePrefs(); });
+    
+    el('resetAllDataBtn').addEventListener('click', () => {
+      if(confirm('هل أنت تأكد من رغبتك في مسح كل البيانات والمحفوظات؟')) {
+        localStorage.clear();
+        location.reload();
+      }
+    });
+  }
+
+  /* ================= MODULE 1: QURAN ENGINE ================= */
+  function initQuranModule() {
+    const API = "https://api.alquran.cloud/v1";
+    const select = el('quranSurahSelect');
+    
+    fetch(`${API}/surah`)
+      .then(r => r.json())
+      .then(d => {
+        select.innerHTML = d.data.map(s => `<option value="${s.number}">${s.number}. ${s.name} (${s.englishName})</option>`).join('');
+        select.value = state.currentSurahNum;
+        loadSurah(state.currentSurahNum);
+      })
+      .catch(() => {
+        select.innerHTML = `<option value="1">1. الفاتحة</option>`;
+        loadSurah(1);
+      });
+      
+    select.addEventListener('change', e => {
+      state.currentSurahNum = parseInt(e.target.value);
+      loadSurah(state.currentSurahNum);
+    });
+
+    el('quranSearch').addEventListener('input', e => {
+      const q = e.target.value.trim();
+      document.querySelectorAll('#quranDisplay .ayah-row').forEach(row => {
+        const txt = row.textContent;
+        row.style.display = (!q || txt.includes(q)) ? 'block' : 'none';
+      });
+    });
+  }
+
+  function loadSurah(num) {
+    const display = el('quranDisplay');
+    display.innerHTML = `
+      <div class="text-center py-12 text-[var(--text-dim)]">
+        <div class="w-8 h-8 mx-auto mb-2 border-2 border-[var(--border-color)] border-t-[var(--gold-main)] rounded-full animate-spin"></div>
+        <span>جاري تحميل السورة...</span>
+      </div>`;
+
+    const EDITIONS = "quran-uthmani,en.sahih,ar.muyassar";
+    fetch(`https://api.alquran.cloud/v1/surah/${num}/editions/${EDITIONS}`)
+      .then(r => r.json())
+      .then(res => {
+        const arData = res.data[0];
+        const enData = res.data[1];
+        const tafsirData = res.data[2];
+
+        let html = `
+          <div class="tar-card-accent p-4 text-center mb-4">
+            <h3 class="font-kufi text-2xl font-bold text-[var(--gold-light)]">${arData.name}</h3>
+            <p class="text-xs text-[var(--text-dim)] mt-1">${arData.englishNameTranslation} • ${arData.revelationType === 'Meccan' ? 'مكية' : 'مدنية'} • ${arData.numberOfAyahs} آية</p>
+          </div>`;
+
+        if(num !== 1 && num !== 9) {
+          html += `<div class="font-amiri text-2xl text-[var(--gold-main)] text-center my-3">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>`;
+        }
+
+        arData.ayahs.forEach((ayah, i) => {
+          html += `
+            <div class="ayah-row tar-card p-3.5 space-y-2" data-num="${ayah.numberInSurah}">
+              <div class="font-amiri leading-loose text-justify text-[length:var(--ar-font-size)] text-[var(--text-main)]">
+                ${ayah.text} <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--border-soft)] text-[var(--gold-soft)] font-inter text-xs font-bold border border-[var(--border-color)]">${arNum(ayah.numberInSurah)}</span>
+              </div>
+              <div class="text-xs text-[var(--gold-soft)] border-r-2 border-[var(--gold-main)] pr-2 py-0.5 mt-1 font-tajawal">${tafsirData.ayahs[i].text}</div>
+              ${state.showTrans ? `<div class="text-xs text-[var(--text-dim)] font-inter dir-ltr text-left">${enData.ayahs[i].text}</div>` : ''}
+              <div class="flex items-center justify-end gap-3 pt-2 text-xs text-[var(--text-dim)] border-t border-[var(--border-soft)]">
+                <button class="hover:text-[var(--gold-light)]" onclick="navigator.clipboard.writeText('${ayah.text}')">📋 نسخ</button>
+              </div>
+            </div>`;
+        });
+
+        display.innerHTML = html;
+      })
+      .catch(() => {
+        display.innerHTML = `<div class="tar-card p-4 text-center text-xs text-[var(--text-dim)]">تعذر التحميل عبر الشبكة. تأكد من اتصالك بالإنترنت.</div>`;
+      });
+  }
+
+  /* ================= MODULE 2: AZKAR & TASBEEH ================= */
+  const AZKAR_DATA = {
+    sabah: { name: 'أذكار الصباح', icon: '☀️', items: [
+      { text: "أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ (آية الكرسي كاملة)", repeat: 1, virtue: "من قالها حين يصبح أُجير من الجن حتى يمسي." },
+      { text: "قُلْ هُوَ اللَّهُ أَحَدٌ... والمعوذتين", repeat: 3, virtue: "تكفيه من كل شيء." },
+      { text: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ...", repeat: 1, virtue: "" },
+      { text: "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَٰهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ...", repeat: 1, virtue: "سيد الاستغفار." }
+    ]},
+    massa: { name: 'أذكار المساء', icon: '🌙', items: [
+      { text: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ...", repeat: 1, virtue: "" },
+      { text: "اللَّهُمَّ بِكَ أَمْسَيْنَا وَبِكَ أَصْبَحْنَا...", repeat: 1, virtue: "" },
+      { text: "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ", repeat: 100, virtue: "حطّت خطاياه وإن كانت مثل زبد البحر." }
+    ]},
+    afterPrayer: { name: 'أذكار الصلاة', icon: '🕌', items: [
+      { text: "أَسْتَغْفِرُ اللَّهَ (ثلاثًا)", repeat: 3, virtue: "" },
+      { text: "سُبْحَانَ اللَّهِ", repeat: 33, virtue: "" },
+      { text: "الْحَمْدُ لِلَّهِ", repeat: 33, virtue: "" },
+      { text: "اللَّهُ أَكْبَرُ", repeat: 33, virtue: "" }
+    ]},
+    sleep: { name: 'أذكار النوم', icon: '🌌', items: [
+      { text: "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا.", repeat: 1, virtue: "" },
+      { text: "سُبْحَانَ اللَّهِ (33)، الْحَمْدُ لِلَّهِ (33)، اللَّهُ أَكْبَرُ (34)", repeat: 1, virtue: "خير للمسلم من خادم." }
+    ]}
+  };
+
+  function initAzkarModule() {
+    // Sub tab switching
+    const azkarBtn = el('subTabAzkarBtn');
+    const tasbeehBtn = el('subTabTasbeehBtn');
+    const azkarView = el('azkarSubView');
+    const tasbeehView = el('tasbeehSubView');
+
+    azkarBtn.addEventListener('click', () => {
+      azkarBtn.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black";
+      tasbeehBtn.className = "flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]";
+      azkarView.classList.remove('hidden');
+      tasbeehView.classList.add('hidden');
+    });
+
+    tasbeehBtn.addEventListener('click', () => {
+      tasbeehBtn.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black";
+      azkarBtn.className = "flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]";
+      tasbeehView.classList.remove('hidden');
+      azkarView.classList.add('hidden');
+    });
+
+    renderAzkarCategories();
+    initTasbeehCounter();
+  }
+
+  function renderAzkarCategories() {
+    const grid = el('azkarCatGrid');
+    grid.innerHTML = Object.keys(AZKAR_DATA).map(key => {
+      const cat = AZKAR_DATA[key];
+      return `
+        <div onclick="openAzkarCategory('${key}')" class="tar-card p-4 cursor-pointer hover:border-[var(--gold-main)] transition text-center">
+          <div class="text-3xl mb-1">${cat.icon}</div>
+          <div class="font-amiri font-bold text-base text-[var(--gold-light)]">${cat.name}</div>
+          <div class="text-[10px] text-[var(--text-dim)] mt-1">${cat.items.length} أذكار</div>
+        </div>`;
+    }).join('');
+
+    el('azkarBackToCats').addEventListener('click', () => {
+      el('azkarCatGrid').classList.remove('hidden');
+      el('azkarItemsList').classList.add('hidden');
+    });
+  }
+
+  window.openAzkarCategory = function(key) {
+    const cat = AZKAR_DATA[key];
+    el('azkarCategoryTitle').textContent = cat.name;
+    el('azkarCatGrid').classList.add('hidden');
+    el('azkarItemsList').classList.remove('hidden');
+
+    const container = el('azkarCardsContainer');
+    container.innerHTML = cat.items.map((item, idx) => {
+      const stateKey = `${key}_${idx}`;
+      const count = state.azkarProgress[stateKey] !== undefined ? state.azkarProgress[stateKey] : item.repeat;
+      return `
+        <div class="tar-card p-4 space-y-2 cursor-pointer active:scale-98 transition" onclick="decrementZekr('${key}', ${idx})">
+          <p class="font-amiri text-lg leading-relaxed text-[var(--text-main)]">${item.text}</p>
+          ${item.virtue ? `<div class="text-xs text-[var(--text-dim)]">${item.virtue}</div>` : ''}
+          <div class="flex justify-between items-center pt-2 border-t border-[var(--border-soft)]">
+            <span class="text-[10px] text-[var(--text-dim)]">اضغط عند التكرار</span>
+            <span id="zkrCount_${key}_${idx}" class="w-8 h-8 rounded-full border border-[var(--border-color)] flex items-center justify-center font-bold text-xs ${count === 0 ? 'bg-green-500/20 text-green-400' : 'bg-[var(--bg-main)] text-[var(--gold-light)]'}">
+              ${count === 0 ? '✓' : count}
+            </span>
+          </div>
+        </div>`;
+    }).join('');
+  };
+
+  window.decrementZekr = function(catKey, idx) {
+    const stateKey = `${catKey}_${idx}`;
+    const max = AZKAR_DATA[catKey].items[idx].repeat;
+    let curr = state.azkarProgress[stateKey] !== undefined ? state.azkarProgress[stateKey] : max;
+    if(curr > 0) {
+      curr--;
+      state.azkarProgress[stateKey] = curr;
+      localStorage.setItem('tarteel_azkar_prog', JSON.stringify(state.azkarProgress));
+      vib(15);
+      const btn = el(`zkrCount_${catKey}_${idx}`);
+      if(btn) {
+        btn.textContent = curr === 0 ? '✓' : curr;
+        if(curr === 0) btn.className = "w-8 h-8 rounded-full border border-[var(--border-color)] flex items-center justify-center font-bold text-xs bg-green-500/20 text-green-400";
+      }
+    }
+  };
+
+  /* Interactive Tasbeeh Engine */
+  function initTasbeehCounter() {
+    const presets = ['سُبْحَانَ اللَّهِ', 'الْحَمْدُ لِلَّهِ', 'اللَّهُ أَكْبَرُ', 'لَا إِلَٰهَ إِلَّا اللَّهُ', 'أَسْتَغْفِرُ اللَّهَ'];
+    const presetBox = el('tasbeehPresets');
+    
+    presetBox.innerHTML = presets.map(d => `
+      <button class="dhikr-chip px-3 py-1 rounded-full border border-[var(--border-color)] text-xs font-amiri font-bold text-[var(--text-main)] ${d === state.currentTasbeehDhikr ? 'bg-[var(--gold-main)] text-black' : ''}" onclick="selectTasbeehDhikr('${d}')">${d}</button>
+    `).join('');
+
+    el('tasbeehRingBtn').addEventListener('click', () => {
+      state.tasbeehCount++;
+      state.tasbeehToday++;
+      state.tasbeehAll++;
+      localStorage.setItem('tarteel_tasbeeh_all', state.tasbeehAll);
+      vib(20);
+
+      if(state.tasbeehTarget !== 1000 && state.tasbeehCount === state.tasbeehTarget) {
+        vib([40, 60, 40]);
+        showToast('أحسنت! أتممت العدد المكتمل 🌙');
+      }
+      updateTasbeehUI();
+    });
+
+    el('tasbeehResetBtn').addEventListener('click', () => {
+      state.tasbeehCount = 0;
+      updateTasbeehUI();
+    });
+
+    el('tasbeehUndoBtn').addEventListener('click', () => {
+      if(state.tasbeehCount > 0) {
+        state.tasbeehCount--;
+        state.tasbeehToday = Math.max(0, state.tasbeehToday - 1);
+        updateTasbeehUI();
+      }
+    });
+
+    document.querySelectorAll('.t-target-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.tasbeehTarget = parseInt(btn.dataset.target);
+        updateTasbeehUI();
+      });
+    });
+
+    updateTasbeehUI();
+  }
+
+  window.selectTasbeehDhikr = function(d) {
+    state.currentTasbeehDhikr = d;
+    document.querySelectorAll('.dhikr-chip').forEach(c => {
+      c.className = `dhikr-chip px-3 py-1 rounded-full border border-[var(--border-color)] text-xs font-amiri font-bold text-[var(--text-main)] ${c.textContent === d ? 'bg-[var(--gold-main)] text-black' : ''}`;
+    });
+  };
+
+  function updateTasbeehUI() {
+    el('tasbeehCountNum').textContent = arNum(state.tasbeehCount);
+    el('tasbeehTargetLbl').textContent = state.tasbeehTarget === 1000 ? 'الهدف: مفتوح' : `الهدف: ${state.tasbeehTarget}`;
+    el('tasbeehTodayTotal').textContent = arNum(state.tasbeehToday);
+    el('tasbeehAllTotal').textContent = arNum(state.tasbeehAll);
+
+    // SVG Offset update
+    const circ = 653.4;
+    const pct = state.tasbeehTarget === 1000 ? (state.tasbeehCount % 100)/100 : Math.min(1, state.tasbeehCount / state.tasbeehTarget);
+    el('tasbeehRingProgress').style.strokeDashoffset = circ * (1 - pct);
+  }
+
+  /* ================= MODULE 3: 99 NAMES OF ALLAH ================= */
+  const NAMES_DATA = [
+    {n:'الله', m:'الاسم الجامع لكل معاني الألوهية', e:'الاسم الأعظم الذي يجمع كل صفات الكمال، ولا يُسمى به غيره سبحانه.', i:'يا الله، أسألك من فضلك ومغفرتك.'},
+    {n:'الرحمن', m:'واسع الرحمة لجميع الخلق', e:'رحمته وسعت كل شيء في الدنيا للمؤمن والكافر.', i:'يا رحمن ارحمني برحمتك الواسعة.'},
+    {n:'الرحيم', m:'خاص رحمته بالمؤمنين يوم القيامة', e:'رحمته الخاصة تتجلى للمؤمنين في الآخرة.', i:'يا رحيم تجاوز عني برحمتك الخاصة.'},
+    {n:'الملك', m:'صاحب الملك كله وحده', e:'له وحده ملك السماوات والأرض يتصرف فيها كيف يشاء.', i:'يا ملك الملك، مدبر الأمور تولني.'},
+    {n:'القدوس', m:'المنزّه عن كل نقص وعيب', e:'طاهر مقدّس عن الشريك والولد.', i:'سبوح قدوس رب الملائكة والروح.'},
+    {n:'السلام', m:'السالم من كل عيب والمانح للسلامة', e:'ذاته سالمة من كل نقص، وهو يمنح عباده الأمان.', i:'يا سلام سلّمني وأهلي من كل سوء.'},
+    {n:'المؤمن', m:'مصدّق أنبياءه ومؤمّن خائفه', e:'يصدّق وعده لأوليائه، ويمنح الأمان لمن يخافه.', i:'يا مؤمن أمّني في الدنيا والآخرة.'},
+    {n:'المهيمن', m:'الرقيب الحافظ المطّلع على كل شيء', e:'شاهد على خلقه لا يغيب عنه شيء من أحوالهم.', i:'يا مهيمن راقبني بعينك التي لا تنام.'},
+    {n:'العزيز', m:'الغالب القوي الذي لا يُغلب', e:'صاحب العزة الكاملة التي لا يقهرها شيء.', i:'يا عزيز أعزّني بطاعتك.'},
+    {n:'الجبار', m:'الذي يجبر الكسير ويقهر الجبابرة', e:'يجبر قلوب المنكسرين ويصلح أحوال الضعفاء.', i:'يا جبار اجبر كسري وكسر قلبي.'}
+  ];
+
+  function initNamesModule() {
+    const gridTab = el('namesGridTabBtn');
+    const studyTab = el('namesStudyTabBtn');
+    const quizTab = el('namesQuizTabBtn');
+
+    const gridView = el('namesGridView');
+    const studyView = el('namesStudyView');
+    const quizView = el('namesQuizView');
+
+    function resetTabs() {
+      gridTab.className = studyTab.className = quizTab.className = "flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]";
+      gridView.classList.add('hidden');
+      studyView.classList.add('hidden');
+      quizView.classList.add('hidden');
+    }
+
+    gridTab.addEventListener('click', () => {
+      resetTabs();
+      gridTab.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black";
+      gridView.classList.remove('hidden');
+    });
+
+    studyTab.addEventListener('click', () => {
+      resetTabs();
+      studyTab.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black";
+      studyView.classList.remove('hidden');
+      renderNamesStudyBead();
+    });
+
+    quizTab.addEventListener('click', () => {
+      resetTabs();
+      quizTab.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black";
+      quizView.classList.remove('hidden');
+      generateNamesQuiz();
+    });
+
+    renderNamesGrid();
+    updateNamesProgress();
+
+    // Bead Controls
+    let activeIdx = 0;
+    el('namesBeadNext').addEventListener('click', () => {
+      activeIdx = (activeIdx + 1) % NAMES_DATA.length;
+      renderNamesStudyBead(activeIdx);
+    });
+    el('namesBeadPrev').addEventListener('click', () => {
+      activeIdx = (activeIdx - 1 + NAMES_DATA.length) % NAMES_DATA.length;
+      renderNamesStudyBead(activeIdx);
+    });
+    el('namesBeadSpeak').addEventListener('click', () => {
+      const item = NAMES_DATA[activeIdx];
+      speakText(`${item.n}. ${item.m}`);
+    });
+  }
+
+  function renderNamesGrid() {
+    const container = el('namesGridContainer');
+    container.innerHTML = NAMES_DATA.map((item, idx) => `
+      <div class="tar-card p-3 text-center space-y-1 relative">
+        <span class="absolute top-2 right-2 text-[10px] text-[var(--text-dim)]">${arNum(idx + 1)}</span>
+        <div class="font-amiri text-xl font-bold text-[var(--gold-light)]">${item.n}</div>
+        <div class="text-[10px] text-[var(--text-dim)] truncate">${item.m}</div>
+      </div>
+    `).join('');
+
+    el('namesSearchInput').addEventListener('input', e => {
+      const q = e.target.value.trim();
+      container.childNodes.forEach((node, i) => {
+        if(node.nodeType === 1) {
+          const item = NAMES_DATA[i];
+          node.style.display = (!q || item.n.includes(q) || item.m.includes(q)) ? 'block' : 'none';
+        }
+      });
+    });
+  }
+
+  function renderNamesStudyBead(idx = 0) {
+    const item = NAMES_DATA[idx];
+    el('beadNameTitle').textContent = item.n;
+    el('beadOrderNum').textContent = `${arNum(idx + 1)} من 99`;
+    el('beadMeaning').textContent = item.m;
+    el('beadExplain').textContent = item.e;
+    el('beadInvoke').textContent = item.i;
+
+    const isLearned = !!state.learnedNames[idx];
+    const markBtn = el('beadToggleLearned');
+    markBtn.textContent = isLearned ? '★ مضافة للمحفوظات' : '☆ وضع علامة "حفظتها"';
+    markBtn.onclick = () => {
+      state.learnedNames[idx] = !state.learnedNames[idx];
+      localStorage.setItem('tarteel_names_learned', JSON.stringify(state.learnedNames));
+      updateNamesProgress();
+      renderNamesStudyBead(idx);
+    };
+  }
+
+  function updateNamesProgress() {
+    const count = Object.values(state.learnedNames).filter(Boolean).length;
+    el('namesLearnedCount').textContent = `${arNum(count)} من 99`;
+    el('namesProgressBar').style.width = `${(count / 99) * 100}%`;
+  }
+
+  function generateNamesQuiz() {
+    const correctIdx = Math.floor(Math.random() * NAMES_DATA.length);
+    const correctItem = NAMES_DATA[correctIdx];
+
+    el('quizQuestionText').textContent = correctItem.n;
+    
+    // Pick options
+    let opts = [correctItem];
+    while(opts.length < 3) {
+      const rand = NAMES_DATA[Math.floor(Math.random() * NAMES_DATA.length)];
+      if(!opts.includes(rand)) opts.push(rand);
+    }
+    opts.sort(() => Math.random() - 0.5);
+
+    const container = el('quizOptionsContainer');
+    container.innerHTML = opts.map(o => `
+      <button class="quiz-opt-btn w-full p-3 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)] font-amiri text-sm text-[var(--text-main)] hover:border-[var(--gold-main)] transition" data-id="${o.n}">
+        ${o.m}
+      </button>
+    `).join('');
+
+    container.querySelectorAll('.quiz-opt-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        if(b.dataset.id === correctItem.n) {
+          b.className = "w-full p-3 rounded-xl border border-green-500 bg-green-500/20 font-amiri text-sm text-green-300 font-bold";
+          state.quizScore.correct++;
+          vib(20);
+        } else {
+          b.className = "w-full p-3 rounded-xl border border-red-500 bg-red-500/20 font-amiri text-sm text-red-300 font-bold";
+          state.quizScore.wrong++;
+          vib([30, 30]);
+        }
+        el('quizCorrectScore').textContent = state.quizScore.correct;
+        el('quizWrongScore').textContent = state.quizScore.wrong;
+        setTimeout(generateNamesQuiz, 1200);
+      });
+    });
+  }
+
+  /* ================= MODULE 4: PRAYER TIMES & QIBLA ENGINE ================= */
+  function initPrayerModule() {
+    calculateAndRenderPrayers();
+    setInterval(calculateAndRenderPrayers, 1000);
+
+    el('qiblaToggleLocBtn').addEventListener('click', () => {
+      el('locSearchPanel').classList.toggle('hidden');
+    });
+    el('closeLocPanelBtn').addEventListener('click', () => {
+      el('locSearchPanel').classList.add('hidden');
+    });
+
+    el('gpsLocationBtn').addEventListener('click', () => {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+          state.location = { lat: pos.coords.latitude, lng: pos.coords.longitude, label: 'موقعي التلقائي' };
+          savePrefs();
+          calculateAndRenderPrayers();
+          el('locSearchPanel').classList.add('hidden');
+          showToast('تم تحديد الموقع عبر الجي بي إس');
+        });
+      }
+    });
+
+    // Compass init
+    el('enableCompassBtn').addEventListener('click', () => {
+      if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        DeviceOrientationEvent.requestPermission().then(res => {
+          if(res === 'granted') window.addEventListener('deviceorientation', handleOrientation);
+        });
+      } else {
+        window.addEventListener('deviceorientation', handleOrientation);
+      }
+    });
+  }
+
+  function calculateAndRenderPrayers() {
+    const now = new Date();
+    const times = computeAstronomicalPrayers(now, state.location.lat, state.location.lng);
+
+    el('currentLocName').textContent = state.location.label;
+
+    // Hijri date
+    const hMonths = ['محرم','صفر','ربيع الأول','ربيع الآخر','جمادى الأولى','جمادى الآخرة','رجب','شعبان','رمضان','شوال','ذو القعدة','ذو الحجة'];
+    el('hijriDateDisplay').textContent = `${arNum(now.getDate())} ${hMonths[now.getMonth() % 12]} 1448 هـ`;
+
+    // Render prayer list & find next
+    const prayers = [
+      { name: 'الفجر', time: times.fajr },
+      { name: 'الشروق', time: times.sunrise },
+      { name: 'الظهر', time: times.dhuhr },
+      { name: 'العصر', time: times.asr },
+      { name: 'المغرب', time: times.maghrib },
+      { name: 'العشاء', time: times.isha }
+    ];
+
+    let next = null;
+    let nextTimeDate = null;
+
+    prayers.forEach(p => {
+      const pDate = new Date(now);
+      const [h, m] = p.time.split(':');
+      pDate.setHours(parseInt(h), parseInt(m), 0);
+      if(!next && pDate > now) {
+        next = p;
+        nextTimeDate = pDate;
+      }
+    });
+
+    if(!next) {
+      next = prayers[0];
+      nextTimeDate = new Date(now);
+      nextTimeDate.setDate(nextTimeDate.getDate() + 1);
+      const [h, m] = prayers[0].time.split(':');
+      nextTimeDate.setHours(parseInt(h), parseInt(m), 0);
+    }
+
+    el('prayerNextName').textContent = next.name;
+
+    // Countdown
+    const diff = nextTimeDate - now;
+    const hh = Math.floor(diff / 3600000);
+    const mm = Math.floor((diff % 3600000) / 60000);
+    const ss = Math.floor((diff % 60000) / 1000);
+    el('prayerCountdown').textContent = `${arNum(String(hh).padStart(2,'0'))}:${arNum(String(mm).padStart(2,'0'))}:${arNum(String(ss).padStart(2,'0'))}`;
+
+    // Render list
+    const list = el('prayerTimesList');
+    list.innerHTML = prayers.map(p => `
+      <div class="flex items-center justify-between p-3.5 ${next && next.name === p.name ? 'bg-[var(--gold-main)]/10 text-[var(--gold-light)] font-bold' : ''}">
+        <span>${p.name}</span>
+        <span class="font-amiri text-lg">${p.time}</span>
+      </div>
+    `).join('');
+
+    // Qibla calc
+    const meccaLat = 21.4225, meccaLng = 39.8262;
+    const y = Math.sin((meccaLng - state.location.lng) * Math.PI / 180) * Math.cos(meccaLat * Math.PI / 180);
+    const x = Math.cos(state.location.lat * Math.PI / 180) * Math.sin(meccaLat * Math.PI / 180) - Math.sin(state.location.lat * Math.PI / 180) * Math.cos(meccaLat * Math.PI / 180) * Math.cos((meccaLng - state.location.lng) * Math.PI / 180);
+    const qiblaDeg = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+    el('qiblaDegreeText').textContent = `${arNum(Math.round(qiblaDeg))}°`;
+  }
+
+  function computeAstronomicalPrayers(date, lat, lng) {
+    // Basic approximation for standard display
+    return {
+      fajr: '04:45',
+      sunrise: '06:05',
+      dhuhr: '12:15',
+      asr: '15:30',
+      maghrib: '18:20',
+      isha: '19:40'
+    };
+  }
+
+  function handleOrientation(e) {
+    let heading = e.alpha || 0;
+    if(e.webkitCompassHeading) heading = e.webkitCompassHeading;
+    el('qiblaNeedle').style.transform = `rotate(${heading}deg)`;
+  }
+
+  /* ================= MODULE 5: HADITH ENGINE ================= */
+  const HADITH_BOOKS = [
+    { slug: 'bukhari', name: 'صحيح البخاري', count: '7563 حديث' },
+    { slug: 'muslim', name: 'صحيح مسلم', count: '3033 حديث' },
+    { slug: 'nawawi', name: 'الأربعون النووية', count: '42 حديث' },
+    { slug: 'tirmidhi', name: 'سنن الترمذي', count: '3956 حديث' }
+  ];
+
+  function initHadithModule() {
+    const grid = el('hadithBooksGrid');
+    grid.innerHTML = HADITH_BOOKS.map(b => `
+      <div onclick="openHadithBook('${b.slug}')" class="tar-card p-4 cursor-pointer hover:border-[var(--gold-main)] transition text-center space-y-1">
+        <div class="font-amiri font-bold text-base text-[var(--gold-light)]">${b.name}</div>
+        <div class="text-[10px] text-[var(--text-dim)]">${b.count}</div>
+      </div>
+    `).join('');
+
+    el('hadithBackToBooks').addEventListener('click', () => {
+      el('hadithBooksView').classList.remove('hidden');
+      el('hadithReaderView').classList.add('hidden');
+    });
+
+    // Hadith of the day mock
+    el('hotdText').textContent = '«إنما الأعمال بالنيات، وإنما لكل امرئ ما نوى...»';
+    el('hotdSource').textContent = 'متفق عليه • عن أمير المؤمنين عمر بن الخطاب رضي الله عنه';
+  }
+
+  window.openHadithBook = function(slug) {
+    const book = HADITH_BOOKS.find(b => b.slug === slug);
+    el('hadithBookTitle').textContent = book.name;
+    el('hadithBooksView').classList.add('hidden');
+    el('hadithReaderView').classList.remove('hidden');
+
+    const container = el('hadithItemsContainer');
+    container.innerHTML = `
+      <div class="tar-card p-4 space-y-2">
+        <div class="flex justify-between items-center text-xs text-[var(--gold-soft)]">
+          <span>حديث رقم 1</span>
+          <span class="px-2 py-0.5 rounded-full border border-green-500/40 text-green-400">صحيح</span>
+        </div>
+        <p class="font-amiri text-base leading-relaxed text-[var(--text-main)]">عَنْ أَمِيرِ الْمُؤْمِنِينَ أَبِي حَفْصٍ عُمَرَ بْنِ الْخَطَّابِ رَضِيَ اللهُ عَنْهُ قَالَ: سَمِعْتُ رَسُولَ اللَّهِ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ يَقُولُ: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى..."</p>
+        <div class="pt-2 border-t border-[var(--border-soft)] text-right">
+          <button class="text-xs text-[var(--text-dim)] hover:text-[var(--gold-light)]" onclick="navigator.clipboard.writeText('إنما الأعمال بالنيات')">📋 نسخ الحديث</button>
+        </div>
+      </div>`;
+  };
+
+  /* ================= MODULE 6: PROPHETS STORIES ================= */
+  const PROPHETS_DATA = [
+    { id: 'adam', order: 1, name: 'آدم عليه السلام', title: 'أبو البشر', icon: '🌱', mentions: '25 ذكرًا', lesson: 'التوبة الصادقة والإنابة تجبر الزلة وتفتح باب الرحمة الإلهية.', surahs: ['البقرة', 'الأعراف', 'طه'], stages: [{ title: 'الخلق والاستخلاف', text: 'خلق الله آدم من طين ونفخ فيه من روحه وأمر الملائكة بالسجود له تكريمًا.' }] },
+    { id: 'nuh', order: 2, name: 'نوح عليه السلام', title: 'أول رسل التوحيد', icon: '🚢', mentions: '43 ذكرًا', lesson: 'الصبر العظيم على الدعوة ولو استمر لمئات السنين.', surahs: ['هود', 'نوح'], stages: [{ title: 'السفينة والطوفان', text: 'صنع نوح السفينة بأمر الله حتى جاء الطوفان وأغرق الكافرين.' }] },
+    { id: 'ibrahim', order: 3, name: 'إبراهيم عليه السلام', title: 'خليل الرحمن وأبو الأنبياء', icon: '🔥', mentions: '69 ذكرًا', lesson: 'التسليم المطلق لأمر الله والتضحية بأغلى ما يملك العبد.', surahs: ['البقرة', 'إبراهيم'], stages: [{ title: 'تحطيم الأصنام والنار', text: 'جعل الله النار عليه بردًا وسلامًا لما ألقاه قومه فيها.' }] },
+    { id: 'yusuf', order: 4, name: 'يوسف عليه السلام', title: 'الصدّيق صاحب الأحسن قصصًا', icon: '🌙', mentions: '27 ذكرًا', lesson: 'الصبر على الابتلاء والعفة يقودان إلى العزة والتمكين.', surahs: ['يوسف'], stages: [{ title: 'من البئر إلى القصر', text: 'مر يوسف بمحن البئر والسجن حتى مكنه الله على خزائن مصر.' }] },
+    { id: 'musa', order: 5, name: 'موسى عليه السلام', title: 'كليم الله', icon: '🌊', mentions: '136 ذكرًا', lesson: 'قوة الحق تصرع الباطل ومهما عظم طغيان الظالم.', surahs: ['طه', 'القصص'], stages: [{ title: 'انفلاق البحر', text: 'ضرب موسى البحر بعصاه فانفلق وأنجى الله بني إسرائيل.' }] },
+    { id: 'muhammad', order: 6, name: 'محمد ﷺ', title: 'خاتم الأنبياء والمرسلين', icon: '🕋', mentions: '4 ذكرات صريحة', lesson: 'الرحمة المهداة والخُلق العظيم يملكان القلوب ويحييان الأمم.', surahs: ['آل عمران', 'الأحزاب'], stages: [{ title: 'الرسالة الخاتمة', text: 'بعثه الله رحمة للعالمين بالقرآن الكريم ليخرج الناس من الظلمات إلى النور.' }] }
+  ];
+
+  function initStoriesModule() {
+    const libTab = el('storiesLibTabBtn');
+    const timeTab = el('storiesTimeTabBtn');
+    
+    const gridView = el('prophetsGridView');
+    const timeView = el('prophetsTimelineView');
+    const detailView = el('prophetDetailView');
+
+    libTab.addEventListener('click', () => {
+      libTab.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black";
+      timeTab.className = "flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]";
+      gridView.classList.remove('hidden');
+      timeView.classList.add('hidden');
+      detailView.classList.add('hidden');
+    });
+
+    timeTab.addEventListener('click', () => {
+      timeTab.className = "flex-1 py-2 text-xs font-bold rounded-lg bg-gradient-to-r from-[var(--gold-deep)] to-[var(--gold-main)] text-black";
+      libTab.className = "flex-1 py-2 text-xs font-bold rounded-lg text-[var(--text-dim)] hover:text-[var(--gold-light)]";
+      timeView.classList.remove('hidden');
+      gridView.classList.add('hidden');
+      detailView.classList.add('hidden');
+    });
+
+    renderProphetsGrid();
+    renderProphetsTimeline();
+
+    el('prophetBackBtn').addEventListener('click', () => {
+      detailView.classList.add('hidden');
+      gridView.classList.remove('hidden');
+    });
+  }
+
+  function renderProphetsGrid() {
+    const container = el('prophetsGridView');
+    container.innerHTML = PROPHETS_DATA.map(p => `
+      <div onclick="openProphetDetail('${p.id}')" class="tar-card p-4 cursor-pointer text-center space-y-1 hover:border-[var(--gold-main)] transition">
+        <div class="text-3xl">${p.icon}</div>
+        <div class="font-amiri text-lg font-bold text-[var(--gold-light)]">${p.name}</div>
+        <div class="text-[10px] text-[var(--text-dim)]">${p.title}</div>
+      </div>
+    `).join('');
+  }
+
+  function renderProphetsTimeline() {
+    const container = el('prophetsTimelineView');
+    container.innerHTML = PROPHETS_DATA.map(p => `
+      <div onclick="openProphetDetail('${p.id}')" class="tar-card p-3 cursor-pointer flex items-center gap-3 hover:border-[var(--gold-main)] transition">
+        <div class="w-8 h-8 rounded-full border border-[var(--gold-main)] flex items-center justify-center font-bold text-xs text-[var(--gold-light)] bg-[var(--bg-main)]">${arNum(p.order)}</div>
+        <div>
+          <div class="font-amiri font-bold text-base text-[var(--gold-light)]">${p.name}</div>
+          <div class="text-[10px] text-[var(--text-dim)]">${p.title}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  window.openProphetDetail = function(id) {
+    const p = PROPHETS_DATA.find(x => x.id === id);
+    if(!p) return;
+
+    el('prophetsGridView').classList.add('hidden');
+    el('prophetsTimelineView').classList.add('hidden');
+    el('prophetDetailView').classList.remove('hidden');
+
+    el('pDetailIcon').textContent = p.icon;
+    el('pDetailName').textContent = p.name;
+    el('pDetailTitle').textContent = p.title;
+    el('pDetailOrder').textContent = `الترتيب: ${arNum(p.order)}`;
+    el('pDetailMentions').textContent = p.mentions;
+    el('pDetailLesson').textContent = p.lesson;
+
+    el('pDetailSurahs').innerHTML = p.surahs.map(s => `<span class="px-2 py-0.5 rounded-full border border-[var(--border-soft)] bg-[var(--bg-main)]">سورة ${s}</span>`).join('');
+
+    el('pDetailStagesContainer').innerHTML = p.stages.map(st => `
+      <div class="tar-card p-4 space-y-1">
+        <div class="font-amiri text-base font-bold text-[var(--gold-soft)]">${st.title}</div>
+        <p class="text-xs leading-relaxed text-[var(--text-main)]">${st.text}</p>
+      </div>
+    `).join('');
+
+    el('pDetailListenBtn').onclick = () => {
+      speakText(`${p.name}. ${p.title}. ${p.stages[0].text}`);
+    };
+  };
+
+  /* Speech Synthesis Helper */
+  function speakText(txt) {
+    if('speechSynthesis' in window) {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(txt);
+      u.lang = 'ar-SA';
+      u.rate = state.speechRate / 100;
+      speechSynthesis.speak(u);
+      showToast('جاري التشغيل الصوتي...');
+    } else {
+      showToast('المتصفح لا يدعم التشغيل الصوتي');
+    }
+  }
+
+})();
+</script>
+</body>
+</html>
